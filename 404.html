@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7c3aed" />
+  <title>Karaoke Animasom</title>
+  <script>
+    (function () {
+      var p = (window.location.pathname || "/").replace(/\/+$/, "");
+      var routeHash = "";
+      var basePath = p;
+      if (/\/admin$/i.test(p)) { routeHash = "#admin"; basePath = p.slice(0, -6); }
+      else if (/\/catalogo$/i.test(p)) { routeHash = "#catalogo"; basePath = p.slice(0, -9); }
+      else if (/\/pesquisa$/i.test(p)) { routeHash = "#pesquisa"; basePath = p.slice(0, -9); }
+      var target = (basePath || "") + "/" + routeHash;
+      if (target !== window.location.pathname + window.location.hash) {
+        window.location.replace(target);
+        return;
+      }
+      // Fallback: probe parent directory if deep nested unknown path
+      var segs = p.split("/").filter(Boolean);
+      if (segs.length > 1) {
+        segs.pop();
+        window.location.replace("/" + segs.join("/") + "/");
+      } else {
+        window.location.replace("/");
+      }
+    })();
+  </script>
+</head>
+<body style="margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;background:#f8fafc;color:#475569">
+  <p>A redirecionar para Karaoke Animasom...</p>
+</body>
+</html>
